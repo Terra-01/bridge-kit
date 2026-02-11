@@ -2,10 +2,11 @@
 "use server";
 
 import { cookies } from "next/headers";
-import mongoose from "mongoose";
+import mongoose, { type Model } from "mongoose";
 import { auth } from "@/lib/auth/auth";
 import { connectDB } from "@/lib/db/mongodb";
 import { Note } from "@/models/note";
+import { AuditReport } from "@/models/audit-report";
 import { GuestMergeLog } from "@/models/guest-merge-log";
 import { createSafeNoInputAction } from "@/lib/safe-action";
 import "@/lib/auth/types";
@@ -16,7 +17,10 @@ const GUEST_COOKIE = "guest_session_id";
  * All Mongoose models that extend BaseSchema and need migration.
  * Add new models here as the application grows.
  */
-const MERGEABLE_MODELS = [{ model: Note, name: "Note" }] as const;
+const MERGEABLE_MODELS: Array<{ model: Model<any>; name: string }> = [
+    { model: Note, name: "Note" },
+    { model: AuditReport, name: "AuditReport" },
+];
 
 interface MergeResult {
     mergedCount: number;
