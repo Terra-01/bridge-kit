@@ -43,7 +43,7 @@ export const toggleItem = createSafeAction<ToggleInput, ToggleResult>(
         const doc = await ChecklistProgress.findOneAndUpdate(
             { ownerId: owner.ownerId, checklistId: "ai-adoption-v1" },
             update,
-            { upsert: true, new: true }
+            { upsert: true, returnDocument: "after" }
         );
 
         revalidatePath("/tools/ai-checklist");

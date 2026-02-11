@@ -8,6 +8,7 @@ import { connectDB } from "@/lib/db/mongodb";
 import { Note } from "@/models/note";
 import { AuditReport } from "@/models/audit-report";
 import { ChecklistProgress } from "@/models/checklist-progress";
+import { AssetAccess } from "@/models/asset-access";
 import { GuestMergeLog } from "@/models/guest-merge-log";
 import { createSafeNoInputAction } from "@/lib/safe-action";
 import "@/lib/auth/types";
@@ -22,6 +23,7 @@ const MERGEABLE_MODELS: Array<{ model: Model<any>; name: string }> = [
     { model: Note, name: "Note" },
     { model: AuditReport, name: "AuditReport" },
     { model: ChecklistProgress, name: "ChecklistProgress" },
+    { model: AssetAccess, name: "AssetAccess" },
 ];
 
 interface MergeResult {
